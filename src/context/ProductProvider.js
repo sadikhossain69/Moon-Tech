@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 
-const PRODUCT_CONTEXT = createContext()
+export const PRODUCT_CONTEXT = createContext()
 
 const ProductProvider = ({ children }) => {
 
