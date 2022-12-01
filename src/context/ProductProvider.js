@@ -9,8 +9,6 @@ const ProductProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(productReducer, initialState)
 
-    console.log(state);
-
     const getProducts = async () => {
         const { data: products } = await axios.get('https://moon-tech-server-odfw.onrender.com/products').catch(() => {
             dispatch({type: actionTypes.FETCHING_ERROR})
