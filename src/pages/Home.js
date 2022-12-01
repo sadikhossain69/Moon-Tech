@@ -5,12 +5,27 @@ import { useProducts } from "../hooks/useProducts";
 const Home = () => {
 
   const { state } = useProducts()
-  const {data : products} = state.products
-  console.log(products)
+  const { loading, products, error } = state
+  const { data: p } = products
+
+  let content
+
+  if(loading) {
+    content = <p>Loading...</p>
+  }
+
+  if(error) {
+    content = <p>Something went wrong</p>
+  }
+
+  if(!loading && !error) {
+    content = p?.map(product => <ProductCard key={product._id} product={product}  />)
+  }
+
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10'>
       {
-        products?.map(product => <ProductCard product={product} />)
+        content
       }
     </div>
   );
